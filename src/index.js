@@ -16,7 +16,7 @@ connectDB()
 .catch((err) => {   
     console.log("Error while connecting to database", err);
     process.exit(1);
-}
+})
 
 
 
