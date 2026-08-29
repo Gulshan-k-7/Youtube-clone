@@ -51,7 +51,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
     // console.log("req.files:",req.files);
     //check if avatar and coverImage files are provided
-    // const coverImageLocalPath = req.files?.avatar?.[0]?.path;
+    const avatarImageLocalPath = req.files?.avatar?.[0]?.path;
     // const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
     let coverImageLocalPath;
     if (req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0) {
@@ -64,7 +64,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
     // console.log(`Avatar local path: ${coverImageLocalPath}`);
     //upload avatar and coverImage to cloudinary
-    const avatar = await uploadOnCloudinary(coverImageLocalPath);
+    const avatar = await uploadOnCloudinary(avatarImageLocalPath);
     const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 
 
@@ -90,6 +90,7 @@ const registerUser = asyncHandler(async (req, res) => {
 })
 
 const loginUser = asyncHandler(async (req, res) => {
+    console.log(req.body)
     const { username, email, password } = req.body;
     if (!(username || email)) {
         throw new ApiErrors(400, "Username or email is required");
@@ -208,6 +209,7 @@ const changePassword = asyncHandler(async (req, res) => {
     if (!oldPassword && !newPassword) {
         throw new ApiErrors(400, "Password field required")
     }
+    console.log("use:", req.user?.id)
     const user = await findById(req.user?.id)
     const isPasswordCorrect = await user.isPasswordCorrect(oldPassword)
     if (!isPasswordCorrect) {

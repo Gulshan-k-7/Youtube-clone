@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 import agregatePaginate from "mongoose-aggregate-paginate-v2";
+
+
+
+
 const videoSchema = new mongoose.Schema({
     videoFile: {
         type: String,
@@ -7,7 +11,7 @@ const videoSchema = new mongoose.Schema({
     },
     thumbnail: {
         type: String,
-        required: true,
+      
     },
     title: {
         type: String,
@@ -19,7 +23,7 @@ const videoSchema = new mongoose.Schema({
     },
     duration: {
         type: Number,
-        required: true,
+       
     },
     views: {
         type: Number,
@@ -29,7 +33,7 @@ const videoSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    owener: {
+    owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true,
