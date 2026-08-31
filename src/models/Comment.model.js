@@ -9,12 +9,12 @@ const CommentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    video:[{
-        type: mongoose.Schema.Type.ObjectId,
+    video:{
+        type: mongoose.Schema.Types.ObjectId,
         ref:"Video"
-    }],
+    },
     owner:{
-        type: mongoose.Schema.Type.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:"User"
     }
 
