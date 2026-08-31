@@ -33,7 +33,6 @@ const publishVideo = asyncHandler(async(req, res)=>{
     }
     const owner = await req.user?.id
     
-    console.log("lklk",owner)
     if(!owner){
         throw new ApiErrors(200, "user not found")
     }
@@ -199,7 +198,7 @@ console.log("de",deleteVideo)
     // }
 
     // Delete MongoDB document
-    // await Video.findByIdAndDelete(videoId)
+    await Video.findByIdAndDelete(videoId)
 
     return res
         .status(200)
