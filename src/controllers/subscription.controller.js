@@ -52,7 +52,7 @@ const getSubscribedChannels = asyncHandler(async (req, res) => {
     const channel = await (await Subscription.find({subscriber:subscriberId})).length
     
     if(!channel){
-        throw new ApiResponse(200,"0 subscribers")
+        throw new ApiErrors(200,"0 subscribers")
     }
     return res.status(200).json(new ApiResponse(200,"subscribers", channel))
 })
